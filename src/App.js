@@ -1,10 +1,15 @@
 import './App.css';
+import './bootstrap.min.css'
+import Footer from './components/Footer';
+import Header from './components/Header';
+
 
 function App() {
   return (
-    <div>
-    <h1>E-cart</h1>
-    </div>
+    <>
+    <Header/>
+    <Footer/>
+    </>
   );
 }
 
