@@ -5,10 +5,12 @@ import Header from './components/Header';
 import Home from './Pages/Home';
 import Cart from './Pages/Cart';
 import Wishlist from './Pages/Wishlist';
+import { ToastContainer } from 'react-bootstrap';
 
 function App() {
   return (
     <>
+    <ToastContainer/>
     <Header/>
     <Routes>
       <Route path='/' element={<Home/>}/>
@@ -16,7 +18,6 @@ function App() {
       <Route path='/wishlist' element={<Wishlist/>}/>
 
 
-      <Route/>
 
     </Routes>
     <Footer/>
