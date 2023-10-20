@@ -3,11 +3,18 @@ import { Row,Col,Card,Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { removeFromWishlist } from '../redux/slices/wishlistSlice'
+import { addToCart } from '../redux/slices/cartSlice'
 
 function Wishlist() {
 
   const wishlistArray = useSelector((state)=>state.wishlistReducer)
   const dispatch = useDispatch()
+
+  const handleWishlistCart = (product)=>{
+    dispatch(addToCart(product))
+    dispatch(removeFromWishlist(product.id))
+
+  }
   return (
     <div style={{marginTop:'100px'}}>
      <Row className='m-5'>
@@ -24,13 +31,13 @@ function Wishlist() {
           </Card.Text>
           <div className='d-flex justify-content-between'>
             <Button onClick={()=>dispatch(removeFromWishlist(product.id))} className='btn bg-dark border-0'><i className="fa-solid fa-trash fa-2x"></i></Button>
-            <Button className='btn bg-dark border-0'><i className="fa-solid fa-cart-plus fa-2x"></i></Button>
+            <Button onClick={()=>handleWishlistCart(product)} className='btn bg-dark border-0'><i className="fa-solid fa-cart-plus fa-2x"></i></Button>
           </div>
   
         </Card.Body>
       </Card>
       </Col>
-        )):<div style={{height:'60vh'}} className='w-100 d-flex justify-content-center flex-column align-items-center'>
+        )):<div style={{height:'60vh',width:'100%'}} className='w-100 d-flex justify-content-center flex-column align-items-center'>
           <img style={{width:'300px',height:'300px'}} src="https://live-mmb-public.s3.ap-south-1.amazonaws.com/assets/img/empty-cart.png" alt="" />
           <h4 className='fw-bold'>Your Wishlist is Empty !</h4>
           <Link to={'/'} className='btn btn-primary mt-3' style={{textDecoration:'none'}} >Home</Link>
